@@ -9,10 +9,17 @@
 #include "raylib.h"
 
 #include <random>
+#include <string>
 #include <vector>
 
 namespace TikTokArena
 {
+    struct WinnerResult
+    {
+        std::string playerName;
+        float elapsedTime{};
+    };
+
     class DuelManager
     {
     public:
@@ -22,15 +29,20 @@ namespace TikTokArena
             HealthBarStyle healthBarStyle
         );
 
-        void startDuels(std::vector<Player>& waitingPlayers, const std::vector<Rectangle>& arenas);
+        void prepareDuels(std::vector<Player>& waitingPlayers, const std::vector<Rectangle>& arenas);
+        void activatePreparedDuels();
+
         void update(float deltaTime);
         void draw() const;
         void clearDuels();
 
         bool hasActiveDuels() const;
+        bool areAllDuelsFinished() const;
+        std::vector<WinnerResult> getWinnerResultsSortedByTime() const;
 
     private:
         void configurePlayersForArena(Player& leftPlayer, Player& rightPlayer, const Rectangle& arena) const;
+        void resetPlayerForDuel(Player& player) const;
         Vector2 createInitialVelocity(SpawnSide spawnSide, float speed) const;
         float randomFloat(float min, float max);
 
@@ -39,6 +51,12 @@ namespace TikTokArena
 
         void drawPlayer(const Player& player) const;
         void drawWinnerText(const Duel& duel) const;
+        void drawArenaTimer(const Duel& duel) const;
+        std::string formatElapsedTime(float elapsedTime) const;
+
+        void drawPreparedDuel(const Duel& duel) const;
+        void drawWeaponListBox(const Player& player, const Rectangle& box) const;
+        std::vector<std::string> buildWeaponList(const Player& player) const;
 
     private:
         PlayerSpawnConfig playerSpawnConfig_;

@@ -3,6 +3,7 @@
 #include "raylib.h"
 
 #include <stdexcept>
+#include <iostream>
 
 namespace TikTokArena
 {
@@ -22,6 +23,7 @@ namespace TikTokArena
     WindowManager::MonitorInfo WindowManager::findBestMonitor() const
     {
         const int monitorCount = GetMonitorCount();
+        std::cout << "[DEBUG] " << monitorCount << std::endl;
 
         if (monitorCount <= 0)
         {
@@ -39,7 +41,7 @@ namespace TikTokArena
                 bestMonitor = currentMonitor;
             }
         }
-
+        return MonitorInfo{1, GetMonitorWidth(1), GetMonitorHeight(1)};
         return bestMonitor;
     }
 

@@ -5,9 +5,12 @@
 #include "duel/DuelManager.hpp"
 #include "effects/BackgroundParticles.hpp"
 #include "entities/Player.hpp"
+#include "gameplay/WeaponSelection.hpp"
 #include "graphics/WindowManager.hpp"
 #include "ui/ArenaGrid.hpp"
+#include "ui/WaitingPlayersRenderer.hpp"
 
+#include <string>
 #include <vector>
 
 namespace TikTokArena
@@ -16,7 +19,8 @@ namespace TikTokArena
     {
         Idle,
         Countdown,
-        Running
+        Running,
+        Results
     };
 
     class Game
@@ -31,11 +35,15 @@ namespace TikTokArena
         void update();
         void render();
         void handleInput();
-        void createTestPlayers();
+
+        void addWaitingPlayer();
         void reset();
 
         void updateCountdown(float deltaTime);
         void renderCountdown() const;
+        void renderTop() const;
+        void drawTopRibbon(Rectangle panel, int rank, Color color) const;
+        Color getRankColor(int rank) const;
 
     private:
         GameConfig config_;
@@ -43,12 +51,17 @@ namespace TikTokArena
         BackgroundParticles backgroundParticles_;
         ArenaGrid arenaGrid_;
         DuelManager duelManager_;
+        WaitingPlayersRenderer waitingPlayersRenderer_;
+
         std::vector<Player> waitingPlayers_;
+        WeaponSelection currentWeaponSelection_;
 
         GameState gameState_{GameState::Idle};
         float countdownTimer_{0.0f};
-        static constexpr float CountdownStepDuration = 1.0f; // 1s per cifra
-        static constexpr int CountdownSteps = 3;             // 3, 2, 1
+        int nextPlayerId_{0};
+
+        static constexpr float CountdownStepDuration = 1.0f;
+        static constexpr int CountdownSteps = 3;
     };
 }
 

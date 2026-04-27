@@ -29,6 +29,7 @@ namespace TikTokArena
         // Grosimea capului weapon-ului (pentru detectia coliziunii)
         virtual float getHalfThickness(const Player& owner) const = 0;
 
+        void rotate(float deltaTime);
         float currentAngle() const { return angle_ + slotAngleOffset_; }
 
         float rotationSpeed_{3.2f};

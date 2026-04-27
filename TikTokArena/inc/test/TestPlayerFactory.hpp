@@ -12,8 +12,18 @@ namespace TikTokArena
     public:
         static std::vector<Player> createRandomPlayers(int count, float radius, float initialHealth);
 
+        static Player createPlayerWithWeapons(
+            int id,
+            float radius,
+            float initialHealth,
+            int batCount,
+            int laserCount,
+            int gunCount
+        );
+
     private:
-        static Player createPlayer(int id, float radius, float initialHealth);
+        static Player createRandomPlayer(int id, float radius, float initialHealth);
+        static void assignRotatingWeaponSlots(Player& player, int totalRotatingWeapons);
         static Color createRandomColor();
     };
 }

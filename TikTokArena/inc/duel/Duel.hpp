@@ -2,13 +2,15 @@
 #define DUEL_HPP
 
 #include "entities/Player.hpp"
-#include <string>
 #include "raylib.h"
+
+#include <string>
 
 namespace TikTokArena
 {
     enum class DuelState
     {
+        Prepared,
         Running,
         Finished
     };
@@ -25,15 +27,22 @@ namespace TikTokArena
         const Rectangle& getArenaBounds() const;
 
         DuelState getState() const;
-        void finish(const std::string& winnerName);
-        const std::string& getWinnerName() const;
+
+        void start();
+        void finish(const std::string& resultText);
+
+        void updateElapsedTime(float deltaTime);
+        float getElapsedTime() const;
+
+        const std::string& getResultText() const;
 
     private:
         Player leftPlayer_;
         Player rightPlayer_;
         Rectangle arenaBounds_{};
-        DuelState state_{DuelState::Running};
-        std::string winnerName_;
+        DuelState state_{DuelState::Prepared};
+        std::string resultText_;
+        float elapsedTime_{0.0f};
     };
 }
 

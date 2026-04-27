@@ -17,17 +17,20 @@ add_executable(TikTokArena
     src/graphics/WindowManager.cpp
     src/ui/ArenaGrid.cpp
     src/ui/HealthBarRenderer.cpp
+    src/ui/WaitingPlayersRenderer.cpp
     src/effects/BackgroundParticles.cpp
     src/physics/MotionIntegrator.cpp
     src/physics/WallCollisionResolver.cpp
     src/physics/CircleCollisionResolver.cpp
     src/physics/PhysicsSystem.cpp
+    src/gameplay/WeaponSelection.cpp
     src/entities/Player.cpp
     src/entities/Weapon.cpp
     src/entities/RotatingWeapon.cpp
     src/entities/BasicWeapon.cpp
     src/entities/BatWeapon.cpp
     src/entities/LaserWeapon.cpp
+    src/entities/GunWeapon.cpp
     src/entities/PowerUp.cpp
     src/entities/BasicPowerUp.cpp
     src/duel/Duel.cpp

@@ -30,9 +30,7 @@ namespace TikTokArena
 
     void RotatingWeapon::update(Player& owner, Player& opponent, float deltaTime)
     {
-        angle_ += rotationSpeed_ * deltaTime;
-        if (angle_ >= 2.0f * PI)
-            angle_ -= 2.0f * PI;
+        rotate(deltaTime);
 
         const bool isColliding = intersectsPlayer(opponent, owner);
 
@@ -40,6 +38,16 @@ namespace TikTokArena
             opponent.applyDamage(getHitDamage());
 
         wasColliding_ = isColliding;
+    }
+
+    void RotatingWeapon::rotate(float deltaTime)
+    {
+        angle_ += rotationSpeed_ * deltaTime;
+
+        if (angle_ >= 2.0f * PI)
+        {
+            angle_ -= 2.0f * PI;
+        }
     }
 
     bool RotatingWeapon::intersectsPlayer(const Player& target, const Player& owner) const
