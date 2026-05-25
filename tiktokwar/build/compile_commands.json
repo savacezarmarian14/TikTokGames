@@ -1,0 +1,112 @@
+[
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/main.cpp.o -c /root/projects/tiktokwar/src/main.cpp",
+  "file": "/root/projects/tiktokwar/src/main.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/core/Game.cpp.o -c /root/projects/tiktokwar/src/core/Game.cpp",
+  "file": "/root/projects/tiktokwar/src/core/Game.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/model/Tower.cpp.o -c /root/projects/tiktokwar/src/model/Tower.cpp",
+  "file": "/root/projects/tiktokwar/src/model/Tower.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/model/Unit.cpp.o -c /root/projects/tiktokwar/src/model/Unit.cpp",
+  "file": "/root/projects/tiktokwar/src/model/Unit.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/model/GameState.cpp.o -c /root/projects/tiktokwar/src/model/GameState.cpp",
+  "file": "/root/projects/tiktokwar/src/model/GameState.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/model/GameEvent.cpp.o -c /root/projects/tiktokwar/src/model/GameEvent.cpp",
+  "file": "/root/projects/tiktokwar/src/model/GameEvent.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/systems/SpawnSystem.cpp.o -c /root/projects/tiktokwar/src/systems/SpawnSystem.cpp",
+  "file": "/root/projects/tiktokwar/src/systems/SpawnSystem.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/systems/MovementSystem.cpp.o -c /root/projects/tiktokwar/src/systems/MovementSystem.cpp",
+  "file": "/root/projects/tiktokwar/src/systems/MovementSystem.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/systems/CollisionSystem.cpp.o -c /root/projects/tiktokwar/src/systems/CollisionSystem.cpp",
+  "file": "/root/projects/tiktokwar/src/systems/CollisionSystem.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/systems/CombatSystem.cpp.o -c /root/projects/tiktokwar/src/systems/CombatSystem.cpp",
+  "file": "/root/projects/tiktokwar/src/systems/CombatSystem.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/systems/RoundSystem.cpp.o -c /root/projects/tiktokwar/src/systems/RoundSystem.cpp",
+  "file": "/root/projects/tiktokwar/src/systems/RoundSystem.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/render/Renderer.cpp.o -c /root/projects/tiktokwar/src/render/Renderer.cpp",
+  "file": "/root/projects/tiktokwar/src/render/Renderer.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/render/TowerRenderer.cpp.o -c /root/projects/tiktokwar/src/render/TowerRenderer.cpp",
+  "file": "/root/projects/tiktokwar/src/render/TowerRenderer.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/render/UnitRenderer.cpp.o -c /root/projects/tiktokwar/src/render/UnitRenderer.cpp",
+  "file": "/root/projects/tiktokwar/src/render/UnitRenderer.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/render/HudRenderer.cpp.o -c /root/projects/tiktokwar/src/render/HudRenderer.cpp",
+  "file": "/root/projects/tiktokwar/src/render/HudRenderer.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/render/EffectsRenderer.cpp.o -c /root/projects/tiktokwar/src/render/EffectsRenderer.cpp",
+  "file": "/root/projects/tiktokwar/src/render/EffectsRenderer.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/input/KeyboardAdapter.cpp.o -c /root/projects/tiktokwar/src/input/KeyboardAdapter.cpp",
+  "file": "/root/projects/tiktokwar/src/input/KeyboardAdapter.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/input/InputManager.cpp.o -c /root/projects/tiktokwar/src/input/InputManager.cpp",
+  "file": "/root/projects/tiktokwar/src/input/InputManager.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/input/TikTokAdapter.cpp.o -c /root/projects/tiktokwar/src/input/TikTokAdapter.cpp",
+  "file": "/root/projects/tiktokwar/src/input/TikTokAdapter.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/audio/AudioManager.cpp.o -c /root/projects/tiktokwar/src/audio/AudioManager.cpp",
+  "file": "/root/projects/tiktokwar/src/audio/AudioManager.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/utils/Math.cpp.o -c /root/projects/tiktokwar/src/utils/Math.cpp",
+  "file": "/root/projects/tiktokwar/src/utils/Math.cpp"
+},
+{
+  "directory": "/root/projects/tiktokwar/build",
+  "command": "/usr/bin/c++  -I/root/projects/tiktokwar/include -g -std=gnu++17 -o CMakeFiles/tiktok_war.dir/src/utils/IdGenerator.cpp.o -c /root/projects/tiktokwar/src/utils/IdGenerator.cpp",
+  "file": "/root/projects/tiktokwar/src/utils/IdGenerator.cpp"
+}
+]
