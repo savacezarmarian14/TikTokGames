@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rules>
+    <!-- RED -->
+    <rule event_type="gift" event_value="Rose" action="spawn Red Blue" />
+    <rule event_type="gift" event_value="Pop" action="spawn Red Purple" />
+    <rule event_type="gift" event_value="Heart Me" action="heal Red" />
+
+    <!-- BLUE -->
+    <rule event_type="gift" event_value="TikTok" action="spawn Blue Red" />
+    <rule event_type="gift" event_value="You're awesome" action="spawn Blue Purple" />
+    <rule event_type="gift" event_value="Love you so much" action="heal Blue" />
+
+    <!-- PURPLE -->
+    <rule event_type="gift" event_value="GG" action="spawn Purple Red" />
+    <rule event_type="gift" event_value="Oldies" action="spawn Purple Blue" />
+    <rule event_type="gift" event_value="Ice Cream Cone" action="heal Purple" />
+</rules>

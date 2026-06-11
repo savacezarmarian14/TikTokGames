@@ -1,46 +1,81 @@
 #pragma once
 
+#include <memory>
 #include "core/Types.hpp"
 
 namespace tw {
 
 /**
- * @brief A moving attack or healing projectile between two towers.
+ * @file Unit.hpp
+ * @brief Defines the abstract base type for all attack units.
+ *
+ * Derived unit types are stored polymorphically so the game can support
+ * normal, shielded, and spiked units with distinct health and damage.
+ */
+
+/**
+ * @brief A moving attack unit between two towers.
  */
 class Unit {
 public:
     /** @brief Constructs an invalid placeholder unit. */
     Unit() = default;
-    /** @brief Constructs a live unit at the start of its lane. */
-    Unit(int id, Team owner, int sourceTowerId, int targetTowerId, float speed, int damage, bool healing);
+    /**
+     * @brief Constructs a live unit at the start of its lane.
+     *
+     * @param id Stable identifier for the unit.
+     * @param owner Owning team.
+     * @param sourceTowerId Id of the source tower.
+     * @param targetTowerId Id of the target tower.
+     * @param speed Lane progress speed per second.
+     * @param damage Damage applied on impact.
+     * @param health Unit durability before destruction.
+     */
+    Unit(int id,
+         Team owner,
+         int sourceTowerId,
+         int targetTowerId,
+         float speed,
+         int damage,
+         int health);
+
+    virtual ~Unit() = default;
+
+    /** @brief Returns the concrete unit archetype. */
+    virtual UnitKind kind() const = 0;
 
     /** @brief Stable numeric identifier. */
     int id() const;
-    /** @brief Owning team, used for colors and collision allegiance. */
+    /** @brief Owning team. */
     Team owner() const;
-    /** @brief Id of the tower that spawned this unit. */
+    /** @brief Id of the source tower. */
     int sourceTowerId() const;
-    /** @brief Id of the tower this unit is moving toward. */
+    /** @brief Id of the target tower. */
     int targetTowerId() const;
 
-    /** @brief Normalized lane progress in the range [0, 1]. */
+    /** @brief Current progress along the lane. */
     float progress() const;
     /** @brief Updates normalized lane progress. */
     void setProgress(float value);
 
-    /** @brief Progress added per second. */
+    /** @brief Lane movement speed. */
     float speed() const;
-    /** @brief Damage or healing amount applied on impact. */
+    /** @brief Damage applied to the destination tower. */
     int damage() const;
-    /** @brief True when this unit heals instead of damaging. */
-    bool isHealing() const;
 
-    /** @brief Whether the unit should remain in simulation. */
+    /** @brief Current unit health. */
+    int health() const;
+    /** @brief Maximum health at spawn. */
+    int maxHealth() const;
+
+    /** @brief Whether this unit remains active in the simulation. */
     bool isAlive() const;
-    /** @brief Marks the unit for removal. */
+    /** @brief Applies damage to this unit and destroys it when health expires. */
+    void takeDamage(int amount);
+    /** @brief Removes this unit from simulation immediately. */
     void destroy();
 
-private:
+protected:
     int id_ = -1;
     Team owner_ = Team::None;
     int sourceTowerId_ = -1;
@@ -48,8 +83,11 @@ private:
     float progress_ = 0.0f;
     float speed_ = 0.0f;
     int damage_ = 0;
-    bool healing_ = false;
+    int health_ = 1;
+    int maxHealth_ = 1;
     bool alive_ = true;
 };
+
+using UnitPtr = std::unique_ptr<Unit>;
 
 } // namespace tw

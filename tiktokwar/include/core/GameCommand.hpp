@@ -15,7 +15,7 @@ struct GameCommand {
     Team team = Team::None;
     /** @brief Source tower id for spawned units. */
     int sourceTowerId = InvalidId;
-    /** @brief Destination tower id for attacks or healing units. */
+    /** @brief Destination tower id for attacks, or healed tower id for heals. */
     int targetTowerId = InvalidId;
     /** @brief Number of units requested by the command. */
     int count = 1;

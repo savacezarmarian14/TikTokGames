@@ -1,0 +1,43 @@
+{
+  "templates": {
+    "game_event": {
+      "message_type": "game_event",
+      "rule": {
+        "id": "{{rule.id}}",
+        "event_type": "{{rule.event_type}}",
+        "event_value": "{{rule.event_value}}",
+        "action": "{{rule.action}}"
+      },
+      "event": {
+        "id": "{{event.event_id}}",
+        "type": "{{event.event_type}}",
+        "timestamp": "{{event.timestamp}}"
+      },
+      "user": {
+        "id": "{{event.user.user_id}}",
+        "username": "{{event.user.username}}",
+        "display_name": "{{event.user.display_name}}"
+      },
+      "payload": {
+        "gift_name": "{{event.payload.gift_name}}",
+        "comment": "{{event.payload.comment}}",
+        "like_count": "{{event.payload.like_count}}",
+        "total_like_count": "{{event.payload.total_like_count}}",
+        "diamond_count": "{{event.payload.diamond_count}}",
+        "repeat_count": "{{event.payload.repeat_count}}",
+        "repeat_end": "{{event.payload.repeat_end}}"
+      },
+      "source": {
+        "platform": "{{event.source.platform}}",
+        "live_username": "{{event.source.stream_id}}",
+        "room_id": "{{event.source.room_id}}"
+      }
+    },
+    "custom_game_event": {
+      "message_type": "custom_game_event",
+      "action": "{{rule.action}}",
+      "value": "{{rule.event_value}}",
+      "username": "{{event.user.username}}"
+    }
+  }
+}

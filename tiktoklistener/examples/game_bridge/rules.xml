@@ -1,0 +1,31 @@
+<rules>
+    <rule id="rose_spawn_blue" event_type="gift">
+        <condition field="payload.gift_name" equals="Rose" />
+        <message template="game_action">
+            <param name="action" value="spawn" />
+            <param name="team" value="red" />
+            <param name="target" value="blue" />
+            <param name="amount" from="payload.repeat_count" type="int" default="1" />
+        </message>
+    </rule>
+
+    <rule id="comment_attack" event_type="comment">
+        <condition field="payload.comment" equals="!attack" ignore_case="true" />
+        <message template="game_action">
+            <param name="action" value="spawn" />
+            <param name="team" value="red" />
+            <param name="target" value="blue" />
+            <param name="amount" value="1" type="int" />
+        </message>
+    </rule>
+
+    <rule id="large_gift_bonus" event_type="gift">
+        <condition field="payload.diamond_count" greater_than="50" type="int" />
+        <message template="game_action">
+            <param name="action" value="bonus" />
+            <param name="team" value="red" />
+            <param name="target" value="red" />
+            <param name="amount" value="5" type="int" />
+        </message>
+    </rule>
+</rules>

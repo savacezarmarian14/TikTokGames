@@ -1,33 +1,19 @@
-<gift_mapping>
+<Gifts>
     <Red>
-        <gift name="Rose" coins="1" action="spawn" target="Blue" amount="1" />
-        <gift name="Music Mic" coins="1" action="spawn" target="Purple" amount="1" />
-        <gift name="GG" coins="1" action="spawn" target="Green" amount="1" />
-        <gift name="Heart" coins="1" action="heal" target="Red" amount="1" />
-
-        <gift name="Finger Heart" coins="5" action="spawn" target="Blue" amount="5" />
-        <gift name="Peach" coins="5" action="spawn" target="Purple" amount="5" />
-        <gift name="Choc Chip Cookie" coins="5" action="spawn" target="Green" amount="5" />
-        <gift name="Pumpkin Pie" coins="5" action="heal" target="Red" amount="5" />
-
-        <gift name="Rosa" coins="10" action="spawn" target="Blue" amount="10" />
-        <gift name="Boo" coins="10" action="spawn" target="Purple" amount="10" />
-        <gift name="Gold Boxing Gloves" coins="10" action="spawn" target="Green" amount="10" />
-        <gift name="Ice Lolly" coins="10" action="heal" target="Red" amount="10" />
-
-        <gift name="Game Controller" coins="100" action="spawn" target="Blue" amount="100" />
-        <gift name="Super GG" coins="100" action="spawn" target="Purple" amount="100" />
-        <gift name="Confetti" coins="100" action="spawn" target="Green" amount="100" />
-        <gift name="Hand Hearts" coins="100" action="heal" target="Red" amount="100" />
-
-        <gift name="Mic Drop" coins="500" action="spawn" target="Blue" amount="500" />
-        <gift name="DJ Glasses" coins="500" action="spawn" target="Purple" amount="500" />
-        <gift name="Gem Gun" coins="500" action="spawn" target="Green" amount="500" />
-        <gift name="Heart Guitar" coins="500" action="heal" target="Red" amount="500" />
-
-        <gift name="Galaxy" coins="1000" action="spawn" target="Blue" amount="1000" />
-        <gift name="Giraffe" coins="1000" action="spawn" target="Purple" amount="1000" />
-        <gift name="Sparkle Dance" coins="1000" action="spawn" target="Green" amount="1000" />
-        <gift name="Blooming Ribbons" coins="1000" action="heal" target="Red" amount="1000" />
+        <gift name="Rose" path="assets/gift_icons/1/Rose.png" action="spawn" target="Blue" />
+        <gift name="Pop" path="assets/gift_icons/1/Pop.png" action="spawn" target="Purple" />
+        <gift name="Heart Me" path="assets/gift_icons/1/Heart_Me.png" action="heal" target="Red" />
     </Red>
-</gift_mapping>
+
+    <Blue>
+        <gift name="TikTok" path="assets/gift_icons/1/TikTok.png" action="spawn" target="Red" />
+        <gift name="You're awesome" path="assets/gift_icons/1/Youre_awesome.png" action="spawn" target="Purple" />
+        <gift name="Love you so much" path="assets/gift_icons/1/Love_you_so_much.png" action="heal" target="Blue" />
+    </Blue>
+
+    <Purple>
+        <gift name="GG" path="assets/gift_icons/1/GG.png" action="spawn" target="Red" />
+        <gift name="Oldies" path="assets/gift_icons/1/Oldies.png" action="spawn" target="Blue" />
+        <gift name="Ice Cream Cone" path="assets/gift_icons/1/Ice_Cream_Cone.png" action="heal" target="Purple" />
+    </Purple>
+</Gifts>

@@ -1,0 +1,28 @@
+{
+  "templates": {
+    "game_event": {
+      "message_type": "game_event",
+
+      "action": "{{rule.action}}",
+
+      "event": {
+        "id": "{{event.event_id}}",
+        "type": "{{event.event_type}}",
+        "timestamp": "{{event.timestamp}}"
+      },
+
+      "user": {
+        "id": "{{event.user.user_id}}",
+        "username": "{{event.user.username}}",
+        "display_name": "{{event.user.display_name}}"
+      },
+
+      "payload": {
+        "gift_name": "{{event.payload.gift_name}}",
+        "coin_value": "{{event.payload.coin_value}}",
+        "repeat_count": "{{event.payload.repeat_count}}",
+        "is_streak_final": "{{event.payload.is_streak_final}}"
+      }
+    }
+  }
+}

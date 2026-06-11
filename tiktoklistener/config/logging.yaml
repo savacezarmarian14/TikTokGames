@@ -1,0 +1,7 @@
+logging:
+  level: "INFO"
+  json: true
+  event_log:
+    enabled: true
+    path: "logs/events.jsonl"
+    include_raw_event: false

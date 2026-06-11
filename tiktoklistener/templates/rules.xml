@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    RuleBasedGameBridge - Rules Template
+
+    Purpose:
+    This XML file tells the listener which action should be assigned
+    to a TikTok event.
+
+    This file should stay SIMPLE.
+
+    The listener receives a normalized TikTok event, for example:
+      event_type = gift
+      event_value = Rose
+
+    Then this file answers:
+      "For this event type and this event value, what action should I send to the game?"
+
+    Supported event_type values:
+      - gift
+      - comment
+      - like
+      - follow
+      - join
+
+    Meaning of event_value:
+      - for gift:    event_value = payload.gift_name
+      - for comment: event_value = payload.comment
+      - for like:    event_value = *
+      - for follow:  event_value = *
+      - for join:    event_value = *
+
+    Use event_value="*" when the event does not need a specific value.
+    Example:
+      Any follow event -> follow_bonus
+      Any like event   -> like_bonus
+
+    Fields:
+      event_type  = TikTok event type
+      event_value = value extracted from the event
+      action      = action name that your game understands
+
+    Important:
+      This XML does NOT define the final JSON structure.
+      It only decides the action.
+
+    The final JSON structure is defined in templates.json.
+-->
+
+<rules>
+
+    <!--
+        Gift rule example.
+
+        If TikTok event is:
+          event_type = gift
+          gift_name  = TODO_GIFT_NAME
+
+        Then the generated output JSON will contain:
+          action = TODO_ACTION_NAME
+    -->
+    <rule
+        event_type="gift"
+        event_value="TODO_GIFT_NAME"
+        action="TODO_ACTION_NAME"
+    />
+
+
+    <!--
+        Comment rule example.
+
+        If TikTok event is:
+          event_type = comment
+          comment    = TODO_COMMENT_COMMAND
+
+        Then:
+          action = TODO_ACTION_NAME
+
+        Example comment commands can be:
+          !attack
+          !heal
+          !boost
+    -->
+    <rule
+        event_type="comment"
+        event_value="TODO_COMMENT_COMMAND"
+        action="TODO_ACTION_NAME"
+    />
+
+
+    <!--
+        Like rule example.
+
+        For likes, usually you do not care about a specific value,
+        so use event_value="*".
+
+        The game can decide what to do with the like event.
+    -->
+    <rule
+        event_type="like"
+        event_value="*"
+        action="TODO_ACTION_NAME"
+    />
+
+
+    <!--
+        Follow rule example.
+
+        Any follow event will trigger this action.
+    -->
+    <rule
+        event_type="follow"
+        event_value="*"
+        action="TODO_ACTION_NAME"
+    />
+
+
+    <!--
+        Join rule example.
+
+        Any join event will trigger this action.
+    -->
+    <rule
+        event_type="join"
+        event_value="*"
+        action="TODO_ACTION_NAME"
+    />
+
+</rules>

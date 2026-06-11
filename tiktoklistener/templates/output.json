@@ -1,0 +1,58 @@
+{
+  "_description": "RuleBasedGameBridge - Output JSON Template",
+  "_purpose": "This file defines the final JSON message sent from the listener to the local game application.",
+  "_important": [
+    "rules.xml decides the action.",
+    "templates.json decides the output JSON structure.",
+    "The actual values come from the real TikTok event and from the matched XML rule.",
+    "Your game receives this generated JSON locally through stdout, UDP, or another configured transport."
+  ],
+
+  "templates": {
+    "game_event": {
+      "message_type": "game_event",
+
+      "rule": {
+        "_description": "Information coming from the matched XML rule.",
+        "event_type": "{{rule.event_type}}",
+        "event_value": "{{rule.event_value}}",
+        "action": "{{rule.action}}"
+      },
+
+      "event": {
+        "_description": "General information from the normalized TikTok event.",
+        "id": "{{event.event_id}}",
+        "type": "{{event.event_type}}",
+        "timestamp": "{{event.timestamp}}"
+      },
+
+      "user": {
+        "_description": "TikTok user who triggered the event, when available.",
+        "id": "{{event.user.id}}",
+        "username": "{{event.user.username}}",
+        "nickname": "{{event.user.nickname}}"
+      },
+
+      "payload": {
+        "_description": "Raw useful data extracted from the TikTok event payload.",
+
+        "gift_name": "{{event.payload.gift_name}}",
+        "comment": "{{event.payload.comment}}",
+
+        "like_count": "{{event.payload.like_count}}",
+        "total_like_count": "{{event.payload.total_like_count}}",
+
+        "coin_value": "{{event.payload.coin_value}}",
+        "repeat_count": "{{event.payload.repeat_count}}",
+        "is_streak_final": "{{event.payload.is_streak_final}}"
+      },
+
+      "source": {
+        "_description": "Information about the live source.",
+        "platform": "tiktok",
+        "live_username": "{{event.source.live_username}}",
+        "room_id": "{{event.source.room_id}}"
+      }
+    }
+  }
+}

@@ -13,7 +13,12 @@ namespace tw {
  */
 class TowerRenderer {
 public:
-    /** @brief Renders every tower in the state. */
+    /**
+     * @brief Renders every tower in the state.
+     *
+     * A cartoon cannon is drawn for each active opposing lane so towers appear
+     * to target nearby enemy towers dynamically.
+     */
     void render(sf::RenderTarget& target,
                 const GameState& state,
                 const std::map<int, sf::Vector2f>& towerPositions,

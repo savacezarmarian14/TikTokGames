@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: tiktok-event-gateway
+Version: 0.1.0
+Summary: Reusable asyncio middleware for normalizing TikTok LIVE events and broadcasting them over WebSockets.
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.11
+Provides-Extra: dev
+Provides-Extra: tiktok
+
+UNKNOWN
+

@@ -1,3 +1,8 @@
+/**
+ * @file CollisionSystem.cpp
+ * @brief Detects and resolves unit collisions along opposing lanes.
+ */
+
 #include "systems/CollisionSystem.hpp"
 #include <algorithm>
 #include "utils/Math.hpp"
@@ -45,43 +50,54 @@ void CollisionSystem::update(GameState& state,
     auto& units = state.units();
 
     for (std::size_t i = 0; i < units.size(); ++i) {
-        if (!units[i].isAlive()) {
+        if (!units[i] || !units[i]->isAlive()) {
             continue;
         }
-        if (!hasTowerPositions(units[i], towerPositions)) {
-            units[i].destroy();
+        if (!hasTowerPositions(*units[i], towerPositions)) {
+            units[i]->destroy();
             continue;
         }
 
-        const auto posA = gameplayUnitPosition(units[i], towerPositions, towerRadius, unitRadius);
+        const auto posA = gameplayUnitPosition(*units[i], towerPositions, towerRadius, unitRadius);
 
         for (std::size_t j = i + 1; j < units.size(); ++j) {
-            if (!units[j].isAlive()) {
+            if (!units[j] || !units[j]->isAlive()) {
                 continue;
             }
-            if (units[i].owner() == units[j].owner()) {
+            if (units[i]->owner() == units[j]->owner()) {
                 continue;
             }
-            if (!sameLaneOppositeDirection(units[i], units[j])) {
+            if (!sameLaneOppositeDirection(*units[i], *units[j])) {
                 continue;
             }
-            if (!hasTowerPositions(units[j], towerPositions)) {
-                units[j].destroy();
+            if (!hasTowerPositions(*units[j], towerPositions)) {
+                units[j]->destroy();
                 continue;
             }
 
-            const auto posB = gameplayUnitPosition(units[j], towerPositions, towerRadius, unitRadius);
+            const auto posB = gameplayUnitPosition(*units[j], towerPositions, towerRadius, unitRadius);
 
             if (math::distance(posA, posB) <= unitRadius * 2.2f) {
-                units[i].destroy();
-                units[j].destroy();
-                state.events().emplace_back(EventType::UnitDestroyed, -1, Team::None, 0);
+                units[i]->takeDamage(1);
+                units[j]->takeDamage(1);
+                int destroyed = 0;
+                if (!units[i]->isAlive()) {
+                    ++destroyed;
+                }
+                if (!units[j]->isAlive()) {
+                    ++destroyed;
+                }
+                if (destroyed > 0) {
+                    state.events().emplace_back(EventType::UnitDestroyed, -1, Team::None, destroyed);
+                }
             }
         }
     }
 
     units.erase(
-        std::remove_if(units.begin(), units.end(), [](const Unit& unit) { return !unit.isAlive(); }),
+        std::remove_if(units.begin(), units.end(), [](const GameState::UnitPtr& unitPtr) {
+            return !unitPtr || !unitPtr->isAlive();
+        }),
         units.end()
     );
 }

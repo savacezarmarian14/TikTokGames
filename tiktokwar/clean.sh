@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-rm -rf build
+
+BUILD_DIR="build"
+rm -rf "$BUILD_DIR"

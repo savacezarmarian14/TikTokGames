@@ -1,0 +1,3 @@
+[console_scripts]
+tiktok-event-gateway = tiktok_event_gateway.cli:main
+

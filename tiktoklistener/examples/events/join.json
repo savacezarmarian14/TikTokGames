@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "event_id": "evt-join-001",
+  "event_type": "join",
+  "timestamp": "2026-01-02T03:04:06Z",
+  "source": {
+    "platform": "tiktok",
+    "connector": "tiktok-live",
+    "room_id": "room-123"
+  },
+  "user": {
+    "user_id": "user-456",
+    "username": "viewer_two",
+    "display_name": "Viewer Two"
+  },
+  "payload": {
+    "viewer_count": 128
+  }
+}

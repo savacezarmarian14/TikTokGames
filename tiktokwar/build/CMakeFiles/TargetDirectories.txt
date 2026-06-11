@@ -1,3 +1,0 @@
-/root/projects/tiktokwar/build/CMakeFiles/tiktok_war.dir
-/root/projects/tiktokwar/build/CMakeFiles/edit_cache.dir
-/root/projects/tiktokwar/build/CMakeFiles/rebuild_cache.dir

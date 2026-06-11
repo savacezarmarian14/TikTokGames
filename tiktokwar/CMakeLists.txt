@@ -14,6 +14,9 @@ add_executable(tiktok_war
     src/core/Game.cpp
     src/model/Tower.cpp
     src/model/Unit.cpp
+    src/model/NormalUnit.cpp
+    src/model/ShieldedUnit.cpp
+    src/model/SpikedUnit.cpp
     src/model/GameState.cpp
     src/model/GameEvent.cpp
     src/systems/SpawnSystem.cpp
@@ -39,4 +42,17 @@ target_link_libraries(tiktok_war
     sfml-window
     sfml-system
     sfml-audio
+)
+
+if(WIN32)
+    target_link_libraries(tiktok_war ws2_32)
+endif()
+
+add_custom_command(TARGET tiktok_war POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_SOURCE_DIR}/assets"
+            "$<TARGET_FILE_DIR:tiktok_war>/assets"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_SOURCE_DIR}/gifts.xml"
+            "$<TARGET_FILE_DIR:tiktok_war>/gifts.xml"
 )

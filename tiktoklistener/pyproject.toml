@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tiktok-event-gateway"
+version = "0.1.0"
+description = "Reusable asyncio middleware for normalizing TikTok LIVE events and broadcasting them over WebSockets."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "TikTok Event Gateway Contributors" }
+]
+keywords = ["tiktok", "live", "websocket", "asyncio", "events", "middleware"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Framework :: AsyncIO",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Typing :: Typed"
+]
+dependencies = [
+  "pydantic>=2.7,<3",
+  "pydantic-settings>=2.2,<3",
+  "PyYAML>=6.0.1,<7",
+  "websockets>=12,<14",
+  "structlog>=24.1,<25",
+  "typer>=0.12,<0.13"
+]
+
+[project.optional-dependencies]
+tiktok = [
+  "TikTokLive>=6,<7"
+]
+dev = [
+  "black>=24.4,<25",
+  "pytest>=8.2,<9",
+  "pytest-asyncio>=0.23,<1",
+  "ruff>=0.6,<0.7",
+  "mypy>=1.10,<1.12"
+]
+
+[project.scripts]
+tiktok-event-gateway = "tiktok_event_gateway.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "demo_client", "examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["tiktok_event_gateway"]

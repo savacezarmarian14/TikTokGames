@@ -12,7 +12,12 @@ namespace tw {
  */
 class CollisionSystem {
 public:
-    /** @brief Destroys colliding enemy units and removes dead units. */
+    /**
+     * @brief Resolves collisions between opposing units.
+     *
+     * Special units can survive multiple normal enemy collisions by taking
+     * damage until their own health reaches zero.
+     */
     void update(GameState& state,
                 const std::map<int, sf::Vector2f>& towerPositions,
                 float towerRadius,

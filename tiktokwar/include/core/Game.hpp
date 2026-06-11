@@ -27,6 +27,8 @@ class Game {
 public:
     /** @brief Creates a game with at least two towers. */
     explicit Game(std::size_t towerCount);
+    /** @brief Creates a game with a custom runtime configuration. */
+    Game(std::size_t towerCount, Config config);
     /** @brief Runs the main process-update-render loop until all windows close. */
     void run();
 
@@ -47,6 +49,10 @@ private:
 private:
     /** @brief Creates all render windows used by the game. */
     void createWindows();
+    /** @brief Returns the SFML window style for the current presentation mode. */
+    unsigned int currentWindowStyle() const;
+    /** @brief Recreates a window when switching between framed and borderless mode. */
+    void recreateWindow(WindowContext& ctx, const sf::Vector2u& size, const sf::Vector2i& position);
     /** @brief Rebuilds towers, clears transient state, and resets autoplay. */
     void initializeState();
     /** @brief Starts a fresh round. */
@@ -71,6 +77,8 @@ private:
 
     /** @brief Enables or disables autonomous command generation. */
     void toggleAutoplay();
+    /** @brief Toggles borderless clean presentation mode. */
+    void togglePresentationMode();
     /** @brief Applies generated autoplay commands for one frame. */
     void updateAutoplay(float dt);
     /** @brief Builds randomized commands that keep the game moving. */
@@ -92,6 +100,7 @@ private:
     AudioManager audioManager_;
 
     bool autoplayEnabled_ = false;
+    bool presentationMode_ = false;
     bool autoplayBurstMode_ = false;
     float autoplayModeTimer_ = 0.0f;
     float autoplayNextShotTimer_ = 0.0f;

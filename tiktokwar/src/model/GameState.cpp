@@ -3,11 +3,11 @@
 namespace tw {
 
 std::vector<Tower>& GameState::towers() { return towers_; }
-std::vector<Unit>& GameState::units() { return units_; }
+std::vector<GameState::UnitPtr>& GameState::units() { return units_; }
 std::vector<GameEvent>& GameState::events() { return events_; }
 
 const std::vector<Tower>& GameState::towers() const { return towers_; }
-const std::vector<Unit>& GameState::units() const { return units_; }
+const std::vector<GameState::UnitPtr>& GameState::units() const { return units_; }
 const std::vector<GameEvent>& GameState::events() const { return events_; }
 
 void GameState::clearEvents() { events_.clear(); }

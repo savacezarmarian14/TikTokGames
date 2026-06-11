@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "event_id": "evt-gift-001",
+  "event_type": "gift",
+  "timestamp": "2026-01-02T03:04:07Z",
+  "source": {
+    "platform": "tiktok",
+    "connector": "tiktok-live",
+    "room_id": "room-123"
+  },
+  "user": {
+    "user_id": "user-789",
+    "username": "gifter",
+    "display_name": "Generous Viewer"
+  },
+  "payload": {
+    "gift_id": "5655",
+    "gift_name": "Rose",
+    "repeat_count": 3,
+    "diamond_count": 1,
+    "repeat_end": true
+  }
+}

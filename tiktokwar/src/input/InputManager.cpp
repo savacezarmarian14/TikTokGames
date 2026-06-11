@@ -2,11 +2,18 @@
 
 namespace tw {
 
+InputManager::InputManager(const NetworkInputConfig& networkInputConfig)
+    : keyboardAdapter_(),
+      tiktokAdapter_(networkInputConfig),
+      pending_() {}
+
 void InputManager::handleEvent(const sf::Event& event, std::size_t towerCount) {
     auto keyboardCommands = keyboardAdapter_.handleEvent(event, towerCount);
     pending_.insert(pending_.end(), keyboardCommands.begin(), keyboardCommands.end());
+}
 
-    auto tiktokCommands = tiktokAdapter_.poll();
+void InputManager::poll(std::size_t towerCount) {
+    auto tiktokCommands = tiktokAdapter_.poll(towerCount);
     pending_.insert(pending_.end(), tiktokCommands.begin(), tiktokCommands.end());
 }
 

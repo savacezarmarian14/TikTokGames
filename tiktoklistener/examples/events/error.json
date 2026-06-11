@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "event_id": "evt-error-001",
+  "event_type": "error",
+  "timestamp": "2026-01-02T03:04:12Z",
+  "source": {
+    "platform": "gateway",
+    "connector": "runtime"
+  },
+  "payload": {
+    "message": "connector disconnected unexpectedly",
+    "code": "connector_disconnected",
+    "recoverable": true
+  }
+}

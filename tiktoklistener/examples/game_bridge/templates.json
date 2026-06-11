@@ -1,0 +1,19 @@
+{
+  "templates": {
+    "game_action": {
+      "message_type": "game_action",
+      "action": "{{params.action}}",
+      "team": "{{params.team}}",
+      "target": "{{params.target}}",
+      "amount": "{{params.amount}}",
+      "metadata": {
+        "source": "tiktok",
+        "event_id": "{{event.event_id}}",
+        "event_type": "{{event.event_type}}",
+        "username": "{{event.user.username}}",
+        "display_name": "{{event.user.display_name}}",
+        "timestamp": "{{event.timestamp}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "event_id": "evt-heartbeat-001",
+  "event_type": "heartbeat",
+  "timestamp": "2026-01-02T03:04:13Z",
+  "source": {
+    "platform": "gateway",
+    "connector": "runtime"
+  },
+  "payload": {
+    "sequence": 42
+  }
+}

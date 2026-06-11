@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "event_id": "evt-connect-001",
+  "event_type": "connect",
+  "timestamp": "2026-01-02T03:04:10Z",
+  "source": {
+    "platform": "tiktok",
+    "connector": "tiktok-live",
+    "room_id": "room-123"
+  },
+  "payload": {
+    "connection_id": "conn-001",
+    "message": "connected to event source"
+  }
+}

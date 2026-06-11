@@ -1,0 +1,7 @@
+websocket:
+  host: "127.0.0.1"
+  port: 8765
+  path: "/events"
+  heartbeat_interval_seconds: 15.0
+  send_timeout_seconds: 5.0
+  client_queue_size: 100

@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "event_id": "evt-like-001",
+  "event_type": "like",
+  "timestamp": "2026-01-02T03:04:08Z",
+  "source": {
+    "platform": "tiktok",
+    "connector": "tiktok-live",
+    "room_id": "room-123"
+  },
+  "user": {
+    "user_id": "user-321",
+    "username": "liker",
+    "display_name": "Liker"
+  },
+  "payload": {
+    "like_count": 5,
+    "total_like_count": 2048
+  }
+}

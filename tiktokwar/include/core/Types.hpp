@@ -8,8 +8,8 @@ namespace tw {
 enum class Team {
     Red = 0,
     Blue,
+    Purple,
     Green,
-    Yellow,
     None
 };
 
@@ -20,6 +20,15 @@ enum class CommandType {
     SpawnAttack,
     SpawnHeal,
     ResetGame
+};
+
+/**
+ * @brief Unit archetypes used to drive rendering and collision rules.
+ */
+enum class UnitKind {
+    Normal,
+    Shielded,
+    Spiked
 };
 
 /**

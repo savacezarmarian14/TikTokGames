@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <vector>
 
+#include "core/Config.hpp"
 #include "core/GameCommand.hpp"
 #include "input/KeyboardAdapter.hpp"
 #include "input/TikTokAdapter.hpp"
@@ -15,8 +16,12 @@ namespace tw {
  */
 class InputManager {
 public:
+    explicit InputManager(const NetworkInputConfig& networkInputConfig = NetworkInputConfig{});
+
     /** @brief Adds commands produced by a window event. */
     void handleEvent(const sf::Event& event, std::size_t towerCount);
+    /** @brief Polls non-SFML input providers, such as the local JSON bridge. */
+    void poll(std::size_t towerCount);
     /** @brief Returns and clears pending commands. */
     std::vector<GameCommand> consumeCommands();
 

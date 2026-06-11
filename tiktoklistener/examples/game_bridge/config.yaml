@@ -1,0 +1,12 @@
+game_bridge:
+  enabled: true
+  rules_path: "examples/game_bridge/rules.xml"
+  templates_path: "examples/game_bridge/templates.json"
+  log_unmatched_events: false
+  deduplication_enabled: true
+  deduplication_max_size: 10000
+  output:
+    type: "stdout"
+    host: "127.0.0.1"
+    port: 7000
+    url: null

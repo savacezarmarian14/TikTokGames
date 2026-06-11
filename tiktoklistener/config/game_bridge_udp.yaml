@@ -1,0 +1,35 @@
+gateway:
+  name: "tiktok-event-gateway"
+  environment: "local"
+
+connector:
+  provider: "mock"
+
+websocket:
+  host: "127.0.0.1"
+  port: 8765
+  path: "/events"
+  heartbeat_interval_seconds: 15.0
+  send_timeout_seconds: 5.0
+  client_queue_size: 100
+
+logging:
+  level: "INFO"
+  json: true
+  event_log:
+    enabled: false
+    path: "logs/events.jsonl"
+    include_raw_event: false
+
+game_bridge:
+  enabled: true
+  rules_path: "examples/game_bridge/rules.xml"
+  templates_path: "examples/game_bridge/templates.json"
+  log_unmatched_events: false
+  deduplication_enabled: true
+  deduplication_max_size: 10000
+  output:
+    type: "udp"
+    host: "127.0.0.1"
+    port: 7000
+    url: null

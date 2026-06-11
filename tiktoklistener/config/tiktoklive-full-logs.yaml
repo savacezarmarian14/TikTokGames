@@ -1,0 +1,43 @@
+gateway:
+  name: "tiktok-event-gateway"
+  environment: "production"
+
+connector:
+  provider: "tiktok"
+  tiktok:
+    live_username: "replace_me"
+    reconnect_enabled: true
+    reconnect_delay_seconds: 5.0
+    include_raw_event_debug: true
+    enabled_event_types:
+      - "comment"
+      - "join"
+      - "gift"
+      - "like"
+      - "follow"
+      - "connect"
+      - "disconnect"
+      - "error"
+
+websocket:
+  host: "0.0.0.0"
+  port: 8765
+  path: "/events"
+  heartbeat_interval_seconds: 10.0
+  send_timeout_seconds: 5.0
+  client_queue_size: 1000
+
+queues:
+  raw_event_max_size: 10000
+  normalized_event_max_size: 10000
+
+logging:
+  level: "DEBUG"
+  json: true
+  event_log:
+    enabled: true
+    path: "logs/tiktok-live-full-events.jsonl"
+    include_raw_event: true
+
+replay:
+  speed_multiplier: 1.0

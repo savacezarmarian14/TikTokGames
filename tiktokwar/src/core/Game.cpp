@@ -3,15 +3,19 @@
 #include <algorithm>
 #include <chrono>
 #include <string>
+#include <utility>
 
 namespace tw {
 
 Game::Game(std::size_t towerCount)
-    : config_(),
+    : Game(towerCount, Config()) {}
+
+Game::Game(std::size_t towerCount, Config config)
+    : config_(std::move(config)),
       towerCount_(std::max<std::size_t>(2, towerCount)),
       windows_(),
       state_(),
-      inputManager_(),
+      inputManager_(config_.networkInput),
       spawnSystem_(config_),
       movementSystem_(),
       collisionSystem_(),
@@ -70,20 +74,35 @@ void Game::createWindows() {
     const sf::Vector2u windowSize = computeWindowSize();
 
     auto ctx = std::make_unique<WindowContext>(config_, Team::None, "TikTok Tower War");
-    ctx->window.create(
-        sf::VideoMode(windowSize.x, windowSize.y),
-        ctx->title,
-        sf::Style::Titlebar | sf::Style::Close
-    );
-    ctx->window.setFramerateLimit(config_.fpsLimit);
-    ctx->window.setPosition({120, 80});
+    recreateWindow(*ctx, windowSize, {120, 80});
 
     windows_.push_back(std::move(ctx));
 }
 
+unsigned int Game::currentWindowStyle() const {
+    return presentationMode_
+        ? sf::Style::None
+        : sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close;
+}
+
+void Game::recreateWindow(WindowContext& ctx, const sf::Vector2u& size, const sf::Vector2i& position) {
+    ctx.window.create(
+        sf::VideoMode(size.x, size.y),
+        ctx.title,
+        currentWindowStyle()
+    );
+    ctx.window.setFramerateLimit(config_.fpsLimit);
+    ctx.window.setPosition(position);
+    ctx.window.clear(sf::Color(7, 10, 20));
+    ctx.window.display();
+}
+
 sf::Vector2u Game::computeWindowSize() const {
     const sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-    return {std::max(1000u, desktop.width * 3 / 4), std::max(700u, desktop.height * 3 / 4)};
+    return {
+        std::max(static_cast<unsigned int>(std::max(1, config_.windowWidth)), desktop.width * 3 / 4),
+        std::max(static_cast<unsigned int>(std::max(1, config_.windowHeight)), desktop.height * 3 / 4)
+    };
 }
 
 bool Game::allWindowsClosed() const {
@@ -138,6 +157,11 @@ void Game::processWindowEvents(WindowContext& ctx) {
                 toggleAutoplay();
                 continue;
             }
+
+            if (event.key.code == sf::Keyboard::Space) {
+                togglePresentationMode();
+                return;
+            }
         }
 
         inputManager_.handleEvent(event, state_.towers().size());
@@ -151,6 +175,20 @@ void Game::toggleAutoplay() {
         autoplayBurstMode_ = false;
         autoplayModeTimer_ = 0.15f;
         autoplayNextShotTimer_ = 0.04f;
+    }
+}
+
+void Game::togglePresentationMode() {
+    presentationMode_ = !presentationMode_;
+
+    for (auto& ctx : windows_) {
+        if (!ctx || !ctx->window.isOpen()) {
+            continue;
+        }
+
+        const sf::Vector2u size = ctx->window.getSize();
+        const sf::Vector2i position = ctx->window.getPosition();
+        recreateWindow(*ctx, size, position);
     }
 }
 
@@ -232,8 +270,8 @@ std::vector<GameCommand> Game::buildAutoplayCommands(float dt) {
         }
 
         int activeFromThisTower = 0;
-        for (const auto& unit : state_.units()) {
-            if (unit.sourceTowerId() == tower.id()) {
+        for (const auto& unitPtr : state_.units()) {
+            if (unitPtr && unitPtr->sourceTowerId() == tower.id()) {
                 ++activeFromThisTower;
             }
         }
@@ -289,6 +327,7 @@ void Game::updateAutoplay(float dt) {
 void Game::update(float dt) {
     state_.clearEvents();
 
+    inputManager_.poll(state_.towers().size());
     const auto commands = inputManager_.consumeCommands();
     spawnSystem_.apply(state_, commands);
 
@@ -298,7 +337,7 @@ void Game::update(float dt) {
 
     if (!windows_.empty() && windows_[0]) {
         const auto positions = windows_[0]->renderer.towerPositions(
-            windows_[0]->window.getSize(),
+            windows_[0]->renderer.virtualCanvasSize(),
             state_.towers().size()
         );
         const float radius = config_.towerRadius;
@@ -317,7 +356,7 @@ void Game::render() {
             continue;
         }
 
-        ctx->renderer.render(ctx->window, state_, ctx->team);
+        ctx->renderer.render(ctx->window, state_, ctx->team, presentationMode_);
     }
 }
 

@@ -58,11 +58,12 @@ void CombatSystem::update(GameState& state,
                           float towerRadius) const {
     auto& units = state.units();
 
-    for (auto& unit : units) {
-        if (!unit.isAlive()) {
+    for (auto& unitPtr : units) {
+        if (!unitPtr || !unitPtr->isAlive()) {
             continue;
         }
 
+        Unit& unit = *unitPtr;
         auto* targetTower = state.findTowerById(unit.targetTowerId());
         if (!targetTower || !targetTower->isAlive()) {
             unit.destroy();
@@ -77,13 +78,6 @@ void CombatSystem::update(GameState& state,
         const auto hitPoint = gameplayTargetEdge(unit, towerPositions, towerRadius, config_.unitRadius);
 
         if (math::distance(unitPos, hitPoint) <= config_.unitRadius * 1.25f || unit.progress() >= 0.999f) {
-            if (unit.isHealing()) {
-                targetTower->heal(unit.damage());
-                state.events().emplace_back(EventType::TowerHealed, targetTower->id(), targetTower->team(), unit.damage());
-                unit.destroy();
-                continue;
-            }
-
             targetTower->takeDamage(unit.damage());
             state.events().emplace_back(EventType::TowerDamaged, targetTower->id(), targetTower->team(), unit.damage());
 
@@ -96,7 +90,9 @@ void CombatSystem::update(GameState& state,
     }
 
     units.erase(
-        std::remove_if(units.begin(), units.end(), [](const Unit& unit) { return !unit.isAlive(); }),
+        std::remove_if(units.begin(), units.end(), [](const GameState::UnitPtr& unitPtr) {
+            return !unitPtr || !unitPtr->isAlive();
+        }),
         units.end()
     );
 }

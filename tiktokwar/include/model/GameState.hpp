@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 #include "model/Tower.hpp"
 #include "model/Unit.hpp"
@@ -12,17 +13,19 @@ namespace tw {
  */
 class GameState {
 public:
+    using UnitPtr = std::unique_ptr<Unit>;
+
     /** @brief Mutable tower collection. */
     std::vector<Tower>& towers();
     /** @brief Mutable active unit collection. */
-    std::vector<Unit>& units();
+    std::vector<UnitPtr>& units();
     /** @brief Mutable frame event collection. */
     std::vector<GameEvent>& events();
 
     /** @brief Read-only tower collection. */
     const std::vector<Tower>& towers() const;
     /** @brief Read-only active unit collection. */
-    const std::vector<Unit>& units() const;
+    const std::vector<UnitPtr>& units() const;
     /** @brief Read-only frame event collection. */
     const std::vector<GameEvent>& events() const;
 
@@ -48,7 +51,7 @@ public:
 
 private:
     std::vector<Tower> towers_;
-    std::vector<Unit> units_;
+    std::vector<UnitPtr> units_;
     std::vector<GameEvent> events_;
     bool roundActive_ = true;
     int winnerId_ = -1;

@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "event_id": "evt-disconnect-001",
+  "event_type": "disconnect",
+  "timestamp": "2026-01-02T03:04:11Z",
+  "source": {
+    "platform": "tiktok",
+    "connector": "tiktok-live",
+    "room_id": "room-123"
+  },
+  "payload": {
+    "reason": "normal shutdown",
+    "code": "shutdown"
+  }
+}

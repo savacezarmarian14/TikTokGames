@@ -15,7 +15,12 @@ namespace tw {
  */
 class UnitRenderer {
 public:
-    /** @brief Renders all live units and updates transient unit particles. */
+    /**
+     * @brief Renders all live units and updates transient unit particles.
+     *
+     * Normal, shielded, and spiked units share one rendering path. Special
+     * unit visuals are selected via UnitKind.
+     */
     void render(sf::RenderTarget& target,
                 const GameState& state,
                 const std::map<int, sf::Vector2f>& towerPositions,

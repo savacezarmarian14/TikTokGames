@@ -1,7 +1,8 @@
 #pragma once
 
 #include <SFML/Audio.hpp>
-#include <array>
+#include <memory>
+#include <vector>
 
 #include "model/GameState.hpp"
 
@@ -12,7 +13,7 @@ namespace tw {
  */
 class AudioManager {
 public:
-    /** @brief Loads sound buffers and prepares reusable playback channels. */
+    /** @brief Prepares reusable playback channels. Sound buffers load lazily. */
     AudioManager();
 
     /** @brief Plays audio associated with events emitted this frame. */
@@ -23,6 +24,8 @@ private:
     sf::Sound* acquireFreeChannel();
     /** @brief Plays a sound buffer if its cooldown has elapsed. */
     void playSound(sf::SoundBuffer& buffer, sf::Int32& lastPlayMs, sf::Int32 cooldownMs, float volume);
+    /** @brief Loads sound buffers and channels on first audio use. */
+    bool ensureLoaded();
 
 private:
     sf::SoundBuffer spawnBuffer_;
@@ -30,8 +33,8 @@ private:
     sf::SoundBuffer healBuffer_;
     sf::SoundBuffer destroyBuffer_;
 
-    static constexpr std::size_t kChannelCount = 24;
-    std::array<sf::Sound, kChannelCount> channels_{};
+    static constexpr std::size_t kChannelCount = 6;
+    std::vector<std::unique_ptr<sf::Sound>> channels_;
 
     sf::Clock audioClock_;
 
@@ -44,6 +47,8 @@ private:
     bool hitLoaded_ = false;
     bool healLoaded_ = false;
     bool destroyLoaded_ = false;
+    bool loadAttempted_ = false;
+    bool audioEnabled_ = false;
 };
 
 } // namespace tw

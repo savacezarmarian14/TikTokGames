@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+    <!-- Compact rules decide only the action for each event. -->
+    <rule event_type="gift" event_value="Rose" action="spawn" />
+    <rule event_type="gift" event_value="Football" action="heal" />
+    <rule event_type="comment" event_value="!attack" action="attack" />
+    <rule event_type="like" event_value="*" action="like_bonus" />
+    <rule event_type="follow" event_value="*" action="follow_bonus" />
+</rules>
